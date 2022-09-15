@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+{% load cart %}
+{% load currency %}
+<div class="card text-center">
+  <div class="card-header">
+    OOPS!!
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Your cart <i class="fa fa-shopping-cart fa-beat fa-2x text-info" aria-hidden="true"></i> is empty</h5>
+    <p class="card-text">Click below and Add items in your cart</p>
+    <a href="/" class="btn btn-info">Continue shoping</a>
+  </div>
+  <div class="card-footer text-muted">
+    
+  </div>
+</div>
+{% endblock %}

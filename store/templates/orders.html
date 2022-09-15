@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block content  %}
+{% load cart %}
+{% load currency %}
+    <div class="container">
+       <div class="border rounded p-4 m-4">
+        <p class="display-4 text-info">Your Orders</p>
+        <table class="table">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Order id</th>
+              <th>name</th>
+              <th>Quantity</th>
+              <th>Date of purchase</th>
+              <th>Price per Unit</th>
+              <th>Total price</th>
+              <th>Payment</th>
+              <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+              {% for o in order %}
+              <tr>
+                <td scope="row">{{o.razorpay_order_id}}</td>
+                <td>{{o.product.name}}</td>                
+                <td><img src="{{o.product.image.url}}" alt="product image" class="rounded" style="height:60px;width:60px;"> * {{o.quantity}}</td>
+                <td>{{o.date}}</td>
+                <td>{{o.product.price|indian_currency}}</td>
+                <td>{{o.quantity|multi:o.price|indian_currency}}</td>
+                <td>{{o.paymentdetails}}</td>
+                {% if o.status == 'Order Placed' %}
+                <td><span class="badge badge-info">{{o.status}}</span></td>
+                {% elif o.status == 'Shiped' %}
+                <td><span class="badge badge-primary">{{o.status}}</span></td>
+                {% elif o.status == 'Out for delivery' %}
+                <td><span class="badge badge-warning">{{o.status}}</span></td>
+                {% elif o.status == 'Delivered' %}
+                <td><span class="badge badge-sucecss">{{o.status}}</span></td>
+                {% elif o.status == 'Failed' %}
+                <td><span class="badge badge-danger">{{o.status}}</span></td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+       </div>
+    </div>
+{% endblock %}
