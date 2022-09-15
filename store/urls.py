@@ -27,6 +27,4 @@ urlpatterns = [
     path('handlerequest/',csrf_exempt(checkout.handlerequest),name='handlerequest'),
     #reset password
     path('password_reset_request/', resetpassword.password_reset_request,name='password_reset_request'),
-    path('password_reset_form/', auth_middleware(resetpassword.password_reset_form),name='password_reset_form'),
-    path(r'^favicon\.ico$',RedirectView.as_view(url='/static/images/favicon.ico')),
-]
+    path('password_reset_form/', auth_middleware(resetpassword.password_reset_form),name='password_reset_form'),]
